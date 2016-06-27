@@ -1,17 +1,24 @@
 {
-  "name": "electrogram",
+  "name": "angular2-webpack-electron",
   "version": "0.0.1",
-  "description": "",
+  "description": "Angular2, Webpack and Electron seed project",
   "main": "main.js",
   "scripts": {
-    "start": "electron main.js",
+    "pkg.darwin.x64": "electron-packager . --platform=darwin --arch=x64 --out=releases/ --overwrite --asar",
+    "pkg.linux.x64": "electron-packager . --platform=linux --arch=x64 --out=releases/ --overwrite --asar",
+    "pkg.linux.ia32": "electron-packager . --platform=linux --arch=ia32 --out=releases/ --overwrite --asar",
+    "pkg.win32.x64": "electron-packager . --platform=win32 --arch=x64 --out=releases/ --overwrite --asar",
+    "pkg.win32.ia32": "electron-packager . --platform=win32 --arch=ia32 --out=releases/ --overwrite --asar",
+    "pkg.all": "electron-packager . --all --out=releases/ --overwrite --asar",
     "build": "webpack --progress --profile --colors --display-error-details --display-cached",
+    "build.pkg": "npm run build && npm run pkg.all",
     "watch": "webpack --watch --progress --profile --colors --display-error-details --display-cached",
-    "distribute": "electron-packager . Electrogram --platform=darwin --arch=x64 --out=releases/ --overwrite --icon=src/assets/images/electrogram  --asar",
     "typings-install": "typings install",
-    "postinstall": "npm run typings-install"
+    "postinstall": "npm run typings-install",
+    "electron": "electron .",
+    "start": "npm run build && npm run electron"
   },
-  "author": "One Hungry Mind",
+  "author": "infining",
   "license": "MIT",
   "devDependencies": {
     "css-loader": "^0.23.1",
@@ -41,5 +48,10 @@
     "rxjs": "5.0.0-beta.6",
     "systemjs": "0.19.27",
     "zone.js": "^0.6.12"
-  }
+  },
+  "repository" :
+    {
+      "type" : "git",
+      "url" : "https://github.com/Infining/angular2-webpack-electron.git"
+    }
 }
