@@ -13,7 +13,7 @@ module.exports = {
       'zone.js'
     ],
     'common': ['es6-shim'],
-    'app': './src/app/app.ts'
+    'app': './src/app/app.component.ts'
   },
 
   output: {
@@ -29,9 +29,20 @@ module.exports = {
   },
 
   module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        loader: 'source-map-loader',
+        exclude: [
+          // these packages have problems with their sourcemaps
+          helpers.root('node_modules/@ngrx/core'),
+          helpers.root('node_modules/@ngrx/router')
+        ]
+      }
+    ]
     loaders: [
       {
-        test: /\.ts$/,
+        test: /\.tsx?$/,
         loader: 'ts',
         exclude: [ /node_modules/, /releases/ ]
       },
