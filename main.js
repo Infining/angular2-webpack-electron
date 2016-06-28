@@ -37,7 +37,8 @@ let createWindow = () => {
   });
 
   if (!menu) setMenu();
-  if (!dockMenu) setDock();
+  // Not working with electron 1.2.5
+  //if (!dockMenu) setDock();
 
   toggleFileTasks(true);
   toggleNewWindowTask(false);
@@ -59,11 +60,13 @@ let toggleNewWindowTask = isEnabled => {
     .submenu.items
     .find(subItem => subItem.label === 'New');
 
-  let dockWindowMenu = dockMenu.items
-    .find(item => item.label === 'New Window');
+  // Not working with electron 1.2.5
+  //let dockWindowMenu = dockMenu.items
+  //  .find(item => item.label === 'New Window');
 
   newWindowMenu.enabled = isEnabled;
-  dockWindowMenu.enabled = isEnabled;
+  // Not working with electron 1.2.5
+  //dockWindowMenu.enabled = isEnabled;
 }
 
 let setMenu = () => {
