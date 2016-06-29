@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
+const helpers = require('./config/helpers');
 
 module.exports = {
   devtool: 'source-map',
@@ -29,17 +30,19 @@ module.exports = {
   },
 
   module: {
-    preLoaders: [
-      {
-        test: /\.js$/,
-        loader: 'source-map-loader',
-        exclude: [
-          // these packages have problems with their sourcemaps
-          helpers.root('node_modules/@ngrx/core'),
-          helpers.root('node_modules/@ngrx/router')
-        ]
-      }
-    ]
+    // preLoaders: [
+    //   {
+    //     test: /\.js$/,
+    //     loader: 'source-map-loader',
+    //     exclude: [
+    //       // these packages have problems with their sourcemaps
+    //       // helpers.root('node_modules/rxjs'),
+    //       // helpers.root('node_modules/@angular'),
+    //       // helpers.root('node_modules/@ngrx'),
+    //       // helpers.root('node_modules/@angular2-material'),
+    //     ]
+    //   }
+    // ],
     loaders: [
       {
         test: /\.tsx?$/,
